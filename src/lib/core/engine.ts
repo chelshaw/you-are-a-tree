@@ -1,31 +1,8 @@
+import { advanceClock } from './clock';
 import { gameState } from './gamestate';
-import { advanceClock, DEFAULT_CLOCK, type GameClock } from './clock';
+import { type GameState, initialGameState } from './types';
 
 const TICK_MS = 1000; // how often ticks happen, in milliseconds
-
-type TreeState = {
-	height: number;
-	girth: number;
-	leafiness: number;
-};
-
-export type GameState = {
-	status: 'paused' | 'running' | 'awaiting_input';
-	clock: GameClock;
-	tree: TreeState;
-	php: number; // photosynthesis energy
-};
-
-export const initialGameState: GameState = {
-	status: 'paused',
-	clock: DEFAULT_CLOCK,
-	php: 0,
-	tree: {
-		height: 1,
-		girth: 1,
-		leafiness: 1
-	}
-};
 
 function advanceGameState(state: GameState, elapsed: number, speed: number): GameState {
 	// For now, just advance the clock; tree doesn't do anything yet
@@ -103,7 +80,9 @@ class GameEngine {
 
 	private notify() {
 		gameState.set(this.state); // update the Svelte store with the new state
-		this.listeners.forEach((fn) => fn(this.state));
+		this.listeners.forEach((fn) => {
+			fn(this.state);
+		});
 	}
 
 	// React (or Svelte) subscribes here
