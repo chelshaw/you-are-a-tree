@@ -1,15 +1,14 @@
 <script lang="ts">
-	import { getSeason } from '$lib/core/clock';
-	import { engine } from '$lib/core/engine';
+	import Controls from '$lib/Controls.svelte';
+	import DebugClock from '$lib/DebugClock.svelte';
+	import DebugTree from '$lib/DebugTree.svelte';
 	import { gameState } from '$lib/core/gamestate';
 </script>
 
 <h1>You are a tree</h1>
-<p>Year: {$gameState.clock.cycle}</p>
-<p>Season: {getSeason($gameState.clock.position)}</p>
-<pre>pos: {$gameState.clock.position}</pre>
-<button on:click={() => engine.start()}>Start (speed {engine.speed})</button>
-<button on:click={() => engine.pause()}>Pause</button>
+<DebugClock />
+<DebugTree />
+<Controls />
 
 {#if $gameState.status === 'awaiting_input'}
 	<!-- <SpecialEventPanel

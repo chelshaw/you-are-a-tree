@@ -66,18 +66,6 @@ class GameEngine {
 		this.animFrame = requestAnimationFrame(() => this.tick());
 	}
 
-	start() {
-		this.state.status = 'running';
-		this.startClock();
-		this.notify();
-	}
-
-	pause() {
-		this.state.status = 'paused';
-		this.stopClock();
-		this.notify();
-	}
-
 	private notify() {
 		gameState.set(this.state); // update the Svelte store with the new state
 		this.listeners.forEach((fn) => {
@@ -91,7 +79,18 @@ class GameEngine {
 		return () => this.listeners.delete(fn);
 	}
 
-	// Player actions called directly — no React event needed
+	// PLAYER ACTIONS
+	start() {
+		this.state.status = 'running';
+		this.startClock();
+		this.notify();
+	}
+
+	pause() {
+		this.state.status = 'paused';
+		this.stopClock();
+		this.notify();
+	}
 	spendHP(action: PlayerAction) {
 		console.log('Player action:', action);
 		this.state = applyPlayerAction(this.state);
