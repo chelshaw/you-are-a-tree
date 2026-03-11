@@ -1,56 +1,33 @@
-# you-are-a-tree
+# You Are A Tree
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+You Are A Tree is a meditative nature game. You are a tree. Survive as many cycles as possible by growing, adapting, and giving back to the systems that sustain you.
 
-## Prerequisites
+## Developing
 
-You will need the following things properly installed on your computer.
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
-* [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
+```sh
+npm run dev
 
-## Installation
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
 
-* `git clone <repository-url>` this repository
-* `cd you-are-a-tree`
-* `npm install`
+## Building
 
-## Running / Development
+To create a production version of your app:
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+```sh
+npm run build
+```
 
-### Code Generators
+You can preview the production build with `npm run preview`.
 
-Make use of the many generators for code, try `ember help generate` for more details
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
 
-### Running Tests
+To recreate this project with the same configuration:
 
-* `ember test`
-* `ember test --server`
-
-### Linting
-
-* `npm run lint`
-* `npm run lint:fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+```sh
+# recreate this project
+pnpm dlx sv@0.12.5 create --template minimal --types ts --add prettier vitest="usages:unit,component" eslint --install pnpm you-are-a-tree
+```
